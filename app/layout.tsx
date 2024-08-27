@@ -1,8 +1,8 @@
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
+import { Red_Hat_Text } from 'next/font/google'
 import '@/styles/globals.css'
 
-const inter = Inter({ subsets: ['latin'] })
+const red_hat_text = Red_Hat_Text({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   title: 'Products List',
@@ -17,7 +17,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='en'>
-      <body className={inter.className}>{children}</body>
+      <body className={red_hat_text.className}>{children}</body>
     </html>
   )
 }
