@@ -17,7 +17,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='en'>
-      <body className={red_hat_text.className}>{children}</body>
+      <body className={red_hat_text.className}>
+        <main className='flex min-h-screen bg-Rose_100 flex-col items-center justify-between p-24'>
+          {children}
+        </main>
+      </body>
     </html>
   )
 }
