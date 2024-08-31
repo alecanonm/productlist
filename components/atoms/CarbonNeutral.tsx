@@ -1,7 +1,7 @@
 import Image from 'next/image'
 
 const CarbonNeutral = () => (
-  <div className='flex bg-Rose_100 p-5 rounded-lg justify-center gap-2'>
+  <div className='flex bg-Rose_100 p-5 text-xs sm:text-base rounded-lg justify-center gap-2'>
     <Image
       src='/assets/images/icon-carbon-neutral.svg'
       alt='carbon-neutral'

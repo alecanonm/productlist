@@ -3,7 +3,7 @@ import Image from 'next/image'
 const ItemList = () => (
   <ul className='flex flex-col gap-5'>
     <li>
-      <div className='flex gap-52 items-center'>
+      <div className='flex justify-between items-center'>
         <div>
           <span className='text-Rose_900 font-semibold '>Classic Tiramisu</span>
           <div className='flex gap-6'>

@@ -6,7 +6,7 @@ const products = data as Product[]
 
 const FoodCardList = () => {
   return (
-    <section className='grid grid-cols-3 gap-8'>
+    <section className='grid grid-cols-1 xl:grid-cols-3 gap-8'>
       {products.map((product) => {
         return <FoodCard key={product.name} product={product} />
       })}

@@ -18,7 +18,7 @@ const FoodCard = ({ product }: { product: Product }) => {
         priority
         height={500}
         width={500}
-        className='rounded-lg h-64 w-64'
+        className='rounded-lg h-48 w-72 sm:h-64 sm:w-64'
         alt='cake'
       />
       <div className='self-center -translate-y-6 relative '>
