@@ -22,7 +22,7 @@ const FoodCard = ({ product }: { product: Product }) => {
         alt='cake'
       />
       <div className='self-center -translate-y-6 relative '>
-        <AddCartButton />
+        <AddCartButton product={product} />
       </div>
       <CardInfo {...product} />
     </article>

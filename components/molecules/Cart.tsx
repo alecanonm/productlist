@@ -7,7 +7,7 @@ import Image from 'next/image'
 const Cart = () => {
   const { cartList } = useCartList()
 
-  const cantItems = cartList.length + 1
+  const cantItems = cartList.length
 
   return (
     <section className='bg-Rose_50 w-72 sm:w-full p-5 sticky top-10 rounded-md'>

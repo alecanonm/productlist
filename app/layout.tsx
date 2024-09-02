@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Red_Hat_Text } from 'next/font/google'
 import '@/styles/globals.css'
+import { Providers } from '@components/templates'
 
 const red_hat_text = Red_Hat_Text({ subsets: ['latin'] })
 
@@ -19,7 +20,7 @@ export default function RootLayout({
     <html lang='en'>
       <body className={red_hat_text.className}>
         <main className='flex min-h-screen bg-Rose_100 flex-col items-center justify-between p-24'>
-          {children}
+          <Providers>{children}</Providers>
         </main>
       </body>
     </html>

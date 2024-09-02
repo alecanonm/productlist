@@ -19,7 +19,7 @@ const ItemList = () => (
           height={15}
           width={15}
           alt='remove'
-          className='border-2 border-Rose_300 rounded-full'
+          className='border-2 border-Rose_300 rounded-full  cursor-pointer'
         />
       </div>
       <hr className='border-1 border-Rose_100' />
