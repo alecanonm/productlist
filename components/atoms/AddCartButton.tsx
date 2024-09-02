@@ -3,18 +3,58 @@
 import { useCartList } from '@context/CartListContext'
 import { Product } from '@interfaces/commons'
 import Image from 'next/image'
-import { useEffect } from 'react'
 
 const AddCartButton = ({ product }: { product: Product }) => {
   const { cartList, setCartList } = useCartList()
 
   const addToCart = function addToCart() {
-    setCartList((prev) => [...prev, product])
+    setCartList((prev) => {
+      const existingProductIndex = prev.findIndex(
+        (item) => item.name === product.name,
+      )
+
+      if (existingProductIndex !== -1) {
+        const updatedProduct = { ...prev[existingProductIndex] }
+        updatedProduct.cant = (updatedProduct.cant || 1) + 1
+        updatedProduct.price += product.price
+        return [
+          ...prev.slice(0, existingProductIndex),
+          updatedProduct,
+          ...prev.slice(existingProductIndex + 1),
+        ]
+      } else {
+        return [...prev, { ...product, cant: 1 }]
+      }
+    })
   }
 
-  useEffect(() => {
-    console.log(cartList)
-  }, [cartList])
+  const decrementCart = function decrementCart() {
+    setCartList((prev) => {
+      const existingProductIndex = prev.findIndex(
+        (item) => item.name === product.name,
+      )
+
+      if (existingProductIndex !== -1) {
+        const updatedProduct = { ...prev[existingProductIndex] }
+        updatedProduct.cant = (updatedProduct.cant || 1) - 1
+        updatedProduct.price -= product.price
+
+        if (updatedProduct.cant <= 0) {
+          return [
+            ...prev.slice(0, existingProductIndex),
+            ...prev.slice(existingProductIndex + 1),
+          ]
+        }
+        return [
+          ...prev.slice(0, existingProductIndex),
+          updatedProduct,
+          ...prev.slice(existingProductIndex + 1),
+        ]
+      }
+
+      return prev
+    })
+  }
 
   const products = cartList.filter((items) => items.name === product.name)
 
@@ -36,7 +76,10 @@ const AddCartButton = ({ product }: { product: Product }) => {
         </div>
       ) : (
         <div className='flex items-center justify-between border-2 border-red p-2 rounded-full bg-red gap-2 w-40 text-Rose_50 font-semibold'>
-          <div className='border-2 flex justify-center items-center border-Rose_50 p-1 h-6 w-6 rounded-full cursor-pointer hover:bg-Rose_50 hover:text-red '>
+          <div
+            onClick={addToCart}
+            className='border-2 flex justify-center items-center border-Rose_50 p-1 h-6 w-6 rounded-full cursor-pointer hover:bg-Rose_50 hover:text-red '
+          >
             <svg
               xmlns='http://www.w3.org/2000/svg'
               width='10'
@@ -50,8 +93,17 @@ const AddCartButton = ({ product }: { product: Product }) => {
               />
             </svg>
           </div>
-          {products.length}
-          <div className='border-2 flex justify-center items-center border-Rose_50 p-1 h-6 w-6 rounded-full cursor-pointer hover:bg-Rose_50 hover:text-red '>
+          {products.map((item, index) => {
+            return (
+              <span key={index} className='font-semibold text-Rose_50'>
+                {item.cant}
+              </span>
+            )
+          })}
+          <div
+            onClick={decrementCart}
+            className='border-2 flex justify-center items-center border-Rose_50 p-1 h-6 w-6 rounded-full cursor-pointer hover:bg-Rose_50 hover:text-red '
+          >
             <svg
               xmlns='http://www.w3.org/2000/svg'
               width='10'
