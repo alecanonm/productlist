@@ -11,11 +11,15 @@ import {
 
 type CartListContextType = {
   cartList: Product[]
+  toggleCart: boolean
+  setToggleCart: Dispatch<SetStateAction<boolean>>
   setCartList: Dispatch<SetStateAction<Product[]>>
 }
 
 const cartListContextDefaultValue: CartListContextType = {
   cartList: [],
+  toggleCart: false,
+  setToggleCart: () => {},
   setCartList: () => {},
 }
 
@@ -33,9 +37,12 @@ export const CartListProvider = ({
   children: React.ReactNode
 }) => {
   const [cartList, setCartList] = useState<Product[]>([])
+  const [toggleCart, setToggleCart] = useState<boolean>(false)
 
   return (
-    <CartListContext.Provider value={{ cartList, setCartList }}>
+    <CartListContext.Provider
+      value={{ cartList, setCartList, toggleCart, setToggleCart }}
+    >
       {children}
     </CartListContext.Provider>
   )
