@@ -8,7 +8,7 @@ const ItemListoConfirm = () => {
   const { cartList } = useCartList()
 
   return (
-    <ul className='flex flex-col'>
+    <ul className='flex flex-col overflow-auto max-h-52 scrollbar-thin'>
       {cartList.map((item, index) => {
         const price = formatCurrency(item.price)
         return (

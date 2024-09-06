@@ -13,11 +13,11 @@ const ItemList = () => {
   }
 
   return (
-    <ul className='flex flex-col gap-5'>
+    <ul className='flex flex-col gap-5 overflow-auto max-h-52 scrollbar-thin'>
       {cartList.map((item, index) => {
         const price = formatCurrency(item.price)
         return (
-          <li key={index}>
+          <li key={index} className='pr-5'>
             <div className='flex justify-between items-center'>
               <div>
                 <span className='text-Rose_900 font-semibold '>
